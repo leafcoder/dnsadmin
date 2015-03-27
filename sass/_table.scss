@@ -1,0 +1,134 @@
+@mixin alternating-rows($even-row-color, $odd-row-color, $header-color: white, $footer-color: white) {
+  th {
+    background-color: $header-color;
+  }
+  tr {
+    &.odd, &:nth-child(2n+1) {
+      background-color: $odd-row-color;
+    }
+  }
+  tr.even {
+    background-color: $even-row-color;
+  }
+  tfoot {
+    background-color: $footer-color;
+  }
+}
+
+@mixin table-borders-extra($width: 2px, $color: black) {
+  border: $width solid $color;
+  #border-collapse: separate;
+  border-collapse: collapse;
+  border-spacing: 0;
+
+  th, td {
+    border: $width solid $color;
+  }
+}
+
+table {
+  width: 100%;
+  border-spacing: 0;
+  border-collapse:collapse;
+  margin-bottom: $default-margin-bottom;
+
+  th, td {
+    padding: 2px 5px;
+  }
+}
+
+.table {
+  thead{
+    text-align: center;
+  }
+
+  th {
+    font-weight: bold;
+  }
+
+  td {
+    border-top: 1px solid #DDD;
+  }
+
+  th, td {
+    line-height: 36px;
+  }
+}
+
+.table-striped {
+  @include alternating-rows(#FFF, #F9F9F9, #FFF, #FFF);
+
+  tr{
+    // for IE 6
+    _background: expression(this.rowIndex % 2 == 0 ? "#FFF": "#F9F9F9");
+  }
+}
+
+.table-hover {
+  tbody{
+    tr {
+      _onmouseout: expression(
+        onmouseout = function(){
+          try{
+            this.className = this.className.replace(' hover','')
+          } catch(ex) {}
+        });
+      _onmouseover: expression(
+        onmouseover = function(){
+          this.className += ' hover'
+        });
+
+      &.hover td{
+        _background: darken(#F9F9F9, 10%);
+      }
+
+      &:hover td, &:hover th {
+        background-color: darken(#F9F9F9, 10%);
+        //font-weight: bold;
+      }
+    }
+  }
+}
+
+.table-bordered {
+  @include table-borders-extra(1px, #DDD);
+}
+
+.table-condensed {
+  th, td {
+    line-height: 1.8em;
+  }
+}
+
+@media (max-width: 740px) {
+  .table-responsive {
+    width: 100%;
+    margin-bottom: 15px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    border: 1px solid #ddd;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    -webkit-overflow-scrolling: touch;
+
+    .table {
+      margin-bottom: 0;
+    }
+    .table-bordered {
+      border: 0;
+      tr {
+        th, td {
+          border-left: 0;
+          border-top: 0;
+          &:last-child {
+            border-right: 0;
+          }
+        }
+        &:last-child {
+          td {
+            border-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+}

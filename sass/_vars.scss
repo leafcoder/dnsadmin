@@ -1,0 +1,129 @@
+// 自定义变量设置
+$screen-mini-width:     20px;
+$screen-mini-margin:    8px;
+$screen-small-width:    32px;
+$screen-small-margin:   9px;
+$screen-middle-width:   47px;
+$screen-middle-margin:  16px;
+$screen-default-width:  62px;
+$screen-default-margin: 20px;
+$screen-large-width:    80px;
+$screen-large-margin:   20px;
+
+// 颜色
+$default-color: #333;
+$success-color: #3c763d;
+$info-color   : #31708f;
+$warning-color: #8a6d3b;
+$error-color  : #a94442;
+$primary-color: #428bca;
+$inverse-color: #FFFFFF;
+$ignore-color : #888888;
+
+$default-bgcolor: #E6E6E6;
+$primary-bgcolor: #0088CC;
+$success-bgcolor: #4A9B17;
+$info-bgcolor   : #00AADD;
+$error-bgcolor  : #C91111;
+$inverse-bgcolor: #000000;
+$warning-bgcolor: #FF9C00;
+
+// _grid.scss
+$default-gride-columns:                12;
+$default-fluid-grid-padding:           20px;
+
+// _typography.scss
+$default-font-size-small:  .625em;
+$default-font-size: 14px;
+$default-font-size-large:  1.25em;
+$default-font-size-xlarge: 1.5em;
+$default-font-weight:      400;
+$default-font-family: "proxima-nova", sans-serif;
+$default-line-height: 1.5em;
+
+$default-margin-bottom: 0.5em;
+$default-border-color: #DDD;
+
+$default-link-color: #1AA;
+$default-link-hover-color: lighten($default-link-color, 10%);
+$default-link-active-color: lighten($default-link-color, 20%);
+$default-link-visited-color: $default-link-color;
+$default-link-focus-color: $default-link-color;
+
+// _button.cscc
+$btn-default-color: #333;
+$btn-default-hover-color: $btn-default-color;
+$btn-default-bgcolor: $default-bgcolor;
+$btn-default-hover-bgcolor: darken($btn-default-bgcolor, 5%);
+$btn-default-disabled-color: #AAA;
+$btn-default-disabled-bgcolor: lighten($btn-default-bgcolor, 5%);
+
+$btn-primary-color: #FFF;
+$btn-primary-hover-color: $btn-primary-color;
+$btn-primary-bgcolor: $primary-bgcolor;
+$btn-primary-hover-bgcolor: darken($btn-primary-bgcolor, 5%);
+$btn-primary-disabled-color: gray;
+$btn-primary-disabled-bgcolor: gray;
+
+$btn-info-color: #FFF;
+$btn-info-hover-color: $btn-info-color;
+$btn-info-bgcolor: $info-bgcolor;
+$btn-info-hover-bgcolor: darken($btn-info-bgcolor, 5%);
+$btn-info-disabled-color: gray;
+$btn-info-disabled-bgcolor: gray;
+
+$btn-warning-color: #FFF;
+$btn-warning-hover-color: $btn-warning-color;
+$btn-warning-bgcolor: $warning-bgcolor;
+$btn-warning-hover-bgcolor: darken($btn-warning-bgcolor, 5%);
+$btn-warning-disabled-color: gray;
+$btn-warning-disabled-bgcolor: gray;
+
+$btn-error-color: #FFF;
+$btn-error-hover-color: $btn-error-color;
+$btn-error-bgcolor: $error-bgcolor;
+$btn-error-hover-bgcolor: darken($btn-error-bgcolor, 5%);
+$btn-error-disabled-color: gray;
+$btn-error-disabled-bgcolor: gray;
+
+$btn-success-color: #FFF;
+$btn-success-hover-color: $btn-success-color;
+$btn-success-bgcolor: $success-bgcolor;
+$btn-success-hover-bgcolor: darken($btn-success-bgcolor, 5%);
+$btn-success-disabled-color: gray;
+$btn-success-disabled-bgcolor: gray;
+
+// panel
+$panel-default-color: $default-color;
+$panel-primary-color: #FFFFFF;
+$panel-error-color  : $error-color;
+$panel-success-color: $success-color;
+$panel-info-color   : $info-color;
+$panel-warning-color: $warning-color;
+$panel-inverse-color: $inverse-color;
+
+$panel-default-bgcolor: lighten($default-bgcolor, 4%);
+$panel-primary-bgcolor: #428bca;
+$panel-success-bgcolor: #dff0d8;
+$panel-info-bgcolor   : #d9edf7;
+$panel-error-bgcolor  : #f2dede;
+$panel-warning-bgcolor: #fcf8e3;
+$panel-inverse-bgcolor: #333333;
+
+// form
+$widget-padding-up   : 3px;
+$widget-padding-down : $widget-padding-up;
+$widget-padding-left : 0;
+$widget-padding-right: $widget-padding-left;
+$widget-border-width : 1px;
+
+// 图标
+$default-icon-path:                "../images/glyphicons-halflings.gif";
+$default-icon-white-path:          "../images/glyphicons-halflings-white.gif";
+
+// 内部变量设置
+$blueprint-grid-columns:               $default-gride-columns;
+$blueprint-liquid-grid-columns:        $default-gride-columns;
+$blueprint-liquid-grid-width:          6.5%;
+$blueprint-liquid-grid-margin:         2%;
+$blueprint-liquid-container-width:     100%;

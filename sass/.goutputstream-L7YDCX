@@ -1,0 +1,90 @@
+// 按钮
+
+$default-btn-padding: 10px 20px;
+$default-btn-padding-ie6: 8px 19px;
+
+.btn {
+  // 消除 ie6 中多余的宽度
+  width: auto;
+  overflow: visible;
+
+  // 消除 ie6 中点击选中按钮后的虚线
+  hide-focus: expression(this.hideFocus=true);
+
+  color: $default-btn-color;
+  font-size: $default-font-size;
+  background: $default-btn-bgcolor;
+  line-height: $default-line-height;
+  border: 1px solid $default-btn-bgcolor;
+  padding: $default-btn-padding;
+  @include inline-block;
+  @include inline-block-extra;
+  @include reset-focus;
+  text-align: center;
+  cursor: pointer;
+  margin: 0;
+  _margin-right: 4px;
+}
+
+.btn-default {
+  // ie6 模拟按钮点击、触发时的样式
+  _onmouseout: expression(
+    onmouseout = function() {
+      try{
+        this.className = this.className.replace(' btn-hover','');
+        this.className = this.className.replace(' btn-active','');
+      } catch(ex) {}
+      this.blur();
+    });
+
+  _onmouseover: expression(
+    onmouseover = function() {
+      this.className += ' btn-hover';
+    });
+
+  _onmousedown: expression(
+    onmousedown = function(){
+      this.className += ' btn-active';
+    });
+
+  _onmouseup: expression(
+    onmouseup = function(){
+      try{
+        this.className = this.className.replace(' btn-active','');
+      } catch(ex) {}
+      this.blur();
+    });
+
+  &:hover {
+    @extend .btn-hover;
+  }
+
+  &:active {
+    @extend .btn-active;
+  }
+}
+
+button.btn {
+  _vertical-align: bottom;
+  _padding: $default-btn-padding-ie6;
+  noFocusLine: expression(this.onFocus=this.blur());
+  _margin-right: 4px;
+}
+
+a.btn {
+  @include link-colors($default-btn-color, $default-btn-color,
+    $default-btn-color, $default-btn-color,
+    $default-btn-color);
+}
+
+.btn-hover {
+  border: 1px solid $default-btn-hover-bgcolor;
+  background-color:$default-btn-hover-bgcolor;
+  color: $default-btn-hover-color;
+}
+
+.btn-active {
+  border: 1px solid darken($default-btn-hover-bgcolor, 10%);
+  background-color:$default-btn-hover-bgcolor;
+  color: $default-btn-hover-color;
+}

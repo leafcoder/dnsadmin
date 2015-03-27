@@ -1,0 +1,18 @@
+@include grid($screen-default-width, $screen-default-margin);
+
+@media (min-width: 1180px) {
+  @include grid($screen-large-width, $screen-large-margin);
+}
+
+@media (min-width: 740px) and (max-width: 964px) {
+  @include grid($screen-middle-width, $screen-middle-margin);
+}
+
+@media (min-width: 483px) and (max-width: 740px) {
+  @include grid($screen-small-width, $screen-small-margin);
+}
+
+@media (max-width: 483px) {
+  @include grid($screen-mini-width, $screen-mini-margin, phone);
+}
+

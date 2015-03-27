@@ -1,0 +1,183 @@
+@mixin last-extend {
+  @include last;
+  clear: right;
+}
+
+@mixin column-extend {
+  @include float-left;
+  margin-right: $blueprint-grid-margin; 
+}
+
+@mixin inline-block-extra {
+  display:inline-block;
+  *display:inline;
+  *zoom: 1;
+}
+
+// 按钮 button
+@mixin make-btn ($name, $color, $bgcolor, $hover-color, $hover-bgcolor){
+  .btn-#{$name} {
+    color: $color;
+    background: $bgcolor;
+    border: 1px solid $bgcolor;
+
+    &:hover {
+      @extend .btn-#{$name}-hover;
+    }
+
+    &:active {
+      @extend .btn-#{$name}-active;
+    }
+
+    // ie6 模拟按钮点击、触发时的样式
+    _onmouseout: expression(
+      onmouseout = function() {
+        var name = this.className.replace(' btn-#{$name}-hover','');
+        this.className = name.replace(' btn-#{$name}-active','');
+        this.blur();
+      });
+
+    _onmouseover: expression(
+      onmouseover = function() {
+        this.className += ' btn-#{$name}-hover';
+      });
+
+    _onmousedown: expression(
+      onmousedown = function(){
+        this.className += ' btn-#{$name}-active';
+      });
+
+    _onmouseup: expression(
+      onmouseup = function(){
+        this.className = this.className.replace(' btn-#{$name}-active','');
+        this.blur();
+      });
+  }
+
+  a.btn-#{$name} {
+    @include link-colors($color, $color, $color, $color, $color);
+  }
+
+  .btn-#{$name}-hover {
+    border: 1px solid $hover-bgcolor;
+    background-color: $hover-bgcolor;
+    color: $hover-color;
+  }
+
+  .btn-#{$name}-active {
+    border: 1px solid darken($hover-bgcolor, 5%);
+    background-color:$hover-bgcolor;
+    color: $hover-color;
+  }
+}
+
+// 布局 grid
+@mixin grid($width, $margin, $device: screen){
+  $blueprint-grid-width:                 $width;
+  $blueprint-grid-margin:                $margin;
+  $blueprint-liquid-container-min-width: 12 * $width + 11 * $margin;
+
+  // For FireFox
+  @-moz-document url-prefix() {
+    .row, .form-group {
+      @for $n from 1 to $blueprint-grid-columns + 1 {
+        textarea.span#{$n}, input.span#{$n} {
+          @if $device == screen {
+            // FF 中减去控件的边框 和 padding 宽度
+            width: span($n) - ($widget-padding-left * 2) - ($widget-border-width * 2) !important;
+          }
+        }
+      }
+    }
+  }
+
+  // Fixed
+  .container{
+    @if $device == screen {
+      width: $blueprint-liquid-container-min-width;
+    } @else {
+      width: 95%;
+    }
+    margin: 0 auto;
+    @include pie-clearfix;
+  }
+  .row {
+    width: 100%;
+    margin: 0;
+    @include pie-clearfix;
+    overflow: visible;
+
+    .last {
+      @include last-extend;
+    }
+  }
+  @for $n from 1 to $blueprint-grid-columns + 1 {
+    .span#{$n} {
+      @if $device == screen {
+        @include column-extend;
+        width: span($n);
+      } @else {
+        width: 100%;
+      }
+      @if $n == $blueprint-grid-columns {
+        margin: 0;
+      }
+    }
+
+    textarea.span#{$n}, input.span#{$n} {
+      @if $device == screen {
+        // IE6 / IE7 中减去控件的边框 和 padding 宽度
+        *width: span($n) - ($widget-padding-left * 2) - ($widget-border-width * 2) !important;
+        _width: span($n) - ($widget-padding-left * 2) - ($widget-border-width * 2);
+      }
+    }
+
+    @if $n != $blueprint-grid-columns {
+      .offset#{$n} {
+        @include prepend($n);
+      }
+    }
+  }
+
+  // Fluid
+  .container-fluid{
+    @if $device == screen {
+      padding: 0 $default-fluid-grid-padding;
+    } @else {
+      padding: 0;
+    }
+  }
+  .row-fluid {
+    width: 100%;
+    @include pie-clearfix;
+    min-width: 0; // for ie7
+    overflow: visible;
+
+    @for $n from 1 to $blueprint-liquid-grid-columns + 1 {
+      .span#{$n} {
+        @if $device == screen {
+          @include column($n, $n == $blueprint-liquid-grid-columns);
+        } @else {
+          width: 100%;
+        }
+        overflow: visible;
+        @if $n == $blueprint-grid-columns {
+          margin: 0;
+        }
+      }
+      @if $n != $blueprint-grid-columns {
+        .offset#{$n} {
+          @include prepend($n);
+        }
+      }
+    }
+
+    .last {
+      @include last-extend;
+    }
+  }
+
+  .last {
+    @include last-extend;
+  }
+}

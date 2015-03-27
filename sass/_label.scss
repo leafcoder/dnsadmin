@@ -1,0 +1,29 @@
+.label {
+  color: #FFF;
+  padding: 2px 4px;
+  white-space: nowrap;
+  vertical-align: baseline;
+
+  @include inline-block;
+  @include inline-block-extra;
+  @include border-radius(2px);
+  font-size: $default-font-size;
+  font-weight: $default-font-weight;
+  line-height: $default-line-height;
+  background-color: $default-bgcolor;
+  @include text-shadow(rgba(0,0,0,0.25) 0 -1px 0);
+}
+
+@mixin make-label ($name, $color, $bgcolor) {
+  .label-#{$name} {
+    color: $color;
+    background-color: $bgcolor;
+  }
+}
+
+@include make-label(success, #FFF, $success-bgcolor);
+@include make-label(info, #FFF, $info-bgcolor);
+@include make-label(warning, #FFF, $warning-bgcolor);
+@include make-label(error, #FFF, $error-bgcolor);
+@include make-label(primary, #FFF, $primary-bgcolor);
+@include make-label(inverse, #FFF, $inverse-bgcolor);

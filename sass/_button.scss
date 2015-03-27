@@ -1,0 +1,66 @@
+// 按钮
+
+$btn-default-padding-top: 4px;
+$btn-default-padding-bottom: $btn-default-padding-top;
+$btn-default-padding-left: 18px;
+$btn-default-padding-right: $btn-default-padding-left;
+$btn-default-padding: $btn-default-padding-top $btn-default-padding-left;
+$btn-default-padding-ie67: ($btn-default-padding-top - 2px) ($btn-default-padding-left - 1px);
+$btn-default-padding-important: ($btn-default-padding-top - 1px) ($btn-default-padding-left - 3px) !important;
+
+.btn {
+  // 消除 ie6 中多余的宽度
+  width: auto;
+  overflow: visible;
+
+  // 消除 ie6 中点击选中按钮后的虚线
+  hide-focus: expression(this.hideFocus=true);
+
+  font-family: $default-font-family;
+  font-size  : $default-font-size;
+  line-height: $default-line-height;
+  padding: $btn-default-padding;
+  @include border-radius(2px);
+  @include inline-block-extra;
+  @include inline-block;
+  @include reset-focus;
+  text-align: center;
+  cursor: pointer;
+  margin: 0;
+}
+
+@include make-btn(default, $btn-default-color, $btn-default-bgcolor,
+  $btn-default-color, $btn-default-hover-bgcolor);
+@include make-btn(primary, $btn-primary-color, $btn-primary-bgcolor,
+  $btn-primary-color, $btn-primary-hover-bgcolor);
+@include make-btn(info, $btn-info-color, $btn-info-bgcolor,
+  $btn-info-color, $btn-info-hover-bgcolor);
+@include make-btn(warning, $btn-warning-color, $btn-warning-bgcolor,
+  $btn-warning-color, $btn-warning-hover-bgcolor);
+@include make-btn(error, $btn-error-color, $btn-error-bgcolor,
+  $btn-error-color, $btn-error-hover-bgcolor);
+@include make-btn(success, $btn-success-color, $btn-success-bgcolor,
+  $btn-success-color, $btn-success-hover-bgcolor);
+
+@-moz-document url-prefix() {
+  button.btn {
+    padding: $btn-default-padding-important;
+  }
+}
+
+button.btn {
+  vertical-align: bottom;
+  *padding: $btn-default-padding-ie67 !important;
+  _padding: $btn-default-padding-ie67;
+  noFocusLine: expression(this.onFocus=this.blur());
+}
+
+.btn-group {
+  @include inline-block;
+  @include inline-block-extra;
+  @include pie-clearfix;
+
+  .btn {
+    @include float-left;
+  }
+}

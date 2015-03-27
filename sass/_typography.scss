@@ -1,0 +1,203 @@
+body {
+  font-family: $default-font-family;
+  font-size: $default-font-size;
+  color: $default-color;
+  line-height: $default-line-height;
+}
+
+p {
+  line-height: $default-line-height;
+  margin-bottom: $default-margin-bottom;
+}
+
+@for $i from 1 to 7 {
+  h#{$i}, .h#{$i} {
+    font-size: 2.5em - ($i - 1) * .2em;
+    line-height: $default-line-height;
+    font-weight: $default-font-weight;
+    margin-bottom: $default-margin-bottom;
+  }
+}
+
+blockquote, .blockquote {
+  padding: .5em 0 .15em 1.5em;
+  border: 0;
+  border-left: 2px solid $default-border-color;
+  margin-bottom: $default-margin-bottom;
+
+  p {
+    font-size: 1.25em;
+    font-style: italic;
+  }
+
+  cite {
+    display: block;
+    font-size: .75em;
+    color: lighten($default-color, 30%);
+
+    &:before {
+      content: "\2014 \0020";
+    }
+  }
+
+  &.right-quote {
+    text-align: right;
+    padding: .5em 1.5em .15em 0;
+    border: 0;
+    border-right: 2px solid $default-border-color;
+  }
+}
+
+address, .address {
+  display: block;
+  margin-bottom: $default-margin-bottom;
+}
+
+small, .small {
+  font-size: $default-font-size-small;
+}
+
+abbr, .abbr {
+  cursor: help;
+  border-bottom: 1px dotted $default-border-color;
+}
+
+i, em, .i, .em{
+  font-style: italic;
+}
+
+b, strong , .b, .strong{
+  font-weight: $default-font-weight;
+}
+
+a {
+  @include unstyled-link;
+  @include link-colors($default-link-color, $default-link-hover-color,
+    $default-link-active-color, $default-link-visited-color,
+    $default-link-focus-color);
+  text-decoration: none;
+}
+
+ul {
+  &.horizontal {
+    @include horizontal-list-container;
+    margin-bottom: $default-margin-bottom;
+
+    li {
+      @include horizontal-list-item(4px, left);
+      margin-left: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  @each $type in circle, square, disc, decimal {
+    &.#{$type} {
+      list-style: $type;
+    }
+  }
+
+  li {
+    margin-left: 1.25em;
+    line-height: $default-line-height;
+  }
+}
+
+ol {
+  @extend ul.decimal;
+  @extend ul;
+}
+
+dl {
+  margin-bottom: $default-margin-bottom;
+
+  dt {
+    font-weight: $default-font-weight;
+    font-size: 1.125em;
+    line-height: $default-line-height;
+  }
+
+  dd {
+    margin-left: 1.25em;
+    line-height: $default-line-height;
+  }
+}
+
+// 文本大小
+.text-small {
+  font-size: $default-font-size-small;
+}
+
+.text-large {
+  font-size: $default-font-size-large;
+}
+
+.text-xlarge {
+  font-size: $default-font-size-xlarge;
+}
+
+// 文本类型
+.text-primary {
+  color: $primary-color;
+}
+
+.text-error {
+  color: $error-color;
+}
+
+.text-success {
+  color: $success-color;
+}
+
+.text-info {
+  color: $info-color;
+}
+
+.text-warning {
+  color: $warning-color;
+}
+
+.text-ignore {
+  color: $ignore-color;
+}
+
+// 文本对齐方式
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+//代码块
+code {
+  @include inline-block;
+  @include inline-block-extra;
+  background-color: #f9f2f4;
+  color: $error-color;
+  padding: 2px 5px;
+  font-size: 90%;
+}
+
+pre {
+  padding: 1em;
+  display: block;
+  font-size: 95%;
+  margin-bottom: $default-margin-bottom;
+  line-height: $default-line-height;
+  color: $default-color;
+  word-break: break-all;
+  word-wrap: break-word;
+  background-color: #f5f5f5;
+  border: 1px solid $default-border-color;
+}
+
+.pre-scrollable {
+  height: 350px;
+  overflow-y: auto;
+  overflow-x: none;
+}

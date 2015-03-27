@@ -1,0 +1,44 @@
+input, textarea, select {
+  padding: $widget-padding-up $widget-padding-left;
+  margin: 0;
+  width: 100%;
+  outline: none;
+  display: block;
+  background: #FFF;
+  color: $default-color;
+  box-sizing: border-box;
+  @include border-radius(2px);
+  border: $widget-border-width solid $default-border-color;
+  @include transition(border-color ease-in-out .15s,box-shadow ease-in-out .15s);
+
+  &:hover{
+    border-color: darken($default-border-color, 15%);
+  }
+
+  &:focus{
+    color: #444;
+    border: 1px solid darken($default-border-color, 30%);
+    @include box-shadow(rgba(0,0,0,.2) 0 0 3px);
+  }
+
+  &.error {
+    border-color: $error-color;
+    &:hover{
+      border-color: lighten($error-color, 10%);
+    }
+    &:focus{
+      border-color: lighten($error-color, 20%);
+    }
+  }
+}
+
+.error {
+  color: $error-color;
+}
+
+
+select.error {
+  color: $error-color;
+}
+
+

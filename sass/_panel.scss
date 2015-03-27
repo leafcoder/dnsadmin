@@ -1,0 +1,47 @@
+.panel {
+  .panel-heading {
+    padding: 5px 15px;
+    font-weight: $default-font-weight;
+
+    .panel-title {
+      font-size: 110%;
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  .panel-body {
+    padding: 10px 15px;
+  }
+
+  .panel-footer {
+    padding: 5px 15px;
+    font-weight: $default-font-weight;
+  }
+}
+
+@mixin make-panel ($name, $color, $bgcolor) {
+  .panel-#{$name} {
+
+    border: 1px solid darken($bgcolor, 3%);
+
+    .panel-heading, .panel-footer {
+      color: $color;
+      background-color: $bgcolor;
+      border-bottom: 1px solid darken($bgcolor, 3%);
+    }
+
+    .panel-footer {
+      background: $bgcolor;
+      border-top: 1px solid darken($bgcolor, 3%);
+    }
+  }
+}
+
+@include make-panel(default, $panel-default-color, $panel-default-bgcolor);
+@include make-panel(success, $panel-success-color, $panel-success-bgcolor);
+@include make-panel(info   , $panel-info-color   , $panel-info-bgcolor);
+@include make-panel(warning, $panel-warning-color, $panel-warning-bgcolor);
+@include make-panel(error  , $panel-error-color  , $panel-error-bgcolor);
+@include make-panel(primary, $panel-primary-color, $panel-primary-bgcolor);
+@include make-panel(inverse, $panel-inverse-color, $panel-inverse-bgcolor);
